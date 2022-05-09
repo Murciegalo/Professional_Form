@@ -36,6 +36,7 @@ export const Register = () => {
 
   useEffect(() => {
     setValidName(USER_REGEX.test(user));
+    console.log(USER_REGEX.test(user));
   }, [user]);
 
   useEffect(() => {
@@ -84,7 +85,7 @@ export const Register = () => {
           <form onSubmit={handleSubmit}>
             <label htmlFor='username'>
               Username:
-              <span className={validName ? 'valid' : 'hide'}>
+              <span className={validName && user ? 'valid' : 'hide'}>
                 <FontAwesomeIcon icon={faCheck} />
               </span>
               <span className={validName || !user ? 'hide' : 'invalid'}>
@@ -120,7 +121,7 @@ export const Register = () => {
               <span className={validEmail ? 'valid' : 'hide'}>
                 <FontAwesomeIcon icon={faCheck} />
               </span>
-              <span className={!validEmail || !email ? 'hide' : 'invalid'}>
+              <span className={validEmail || !email ? 'hide' : 'invalid'}>
                 <FontAwesomeIcon icon={faTimes} />
               </span>
             </label>
@@ -137,9 +138,7 @@ export const Register = () => {
             <p
               id='emailnote'
               ref={errRef}
-              className={
-                userFocus && email && !validEmail ? 'instructions' : 'offscreen'
-              }>
+              className={email && !validEmail ? 'instructions' : 'offscreen'}>
               <FontAwesomeIcon icon={faInfoCircle} />
               Please input a proper email address, thanks.
             </p>
