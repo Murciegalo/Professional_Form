@@ -24,9 +24,15 @@ export const Login = () => {
     try {
       const res = await axios.post('/user/signin', { email, password: pwd });
       console.log(res);
+      const accessToken = res?.data?.token;
+      const roles = res?.data?.user?.role;
+      setEmail('');
+      setPwd('');
+      setAuth({ accessToken, email, roles });
     } catch (err) {
       console.log(err.response.data);
       setErrMsg(err.response.data.msg);
+      errRef.current.focus();
     }
   };
   return (
