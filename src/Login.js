@@ -1,3 +1,4 @@
+import axios from './api/axios';
 import { useRef, useState, useEffect, useContext } from 'react';
 import { AuthContext } from './context/AuthProvider';
 
@@ -6,21 +7,27 @@ export const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    // userRef.current.focus()
+    userRef.current.focus();
   }, []);
   useEffect(() => {
     setErrMsg('');
-  }, [user, pwd]);
+  }, [email, pwd]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccess('true');
+    try {
+      const res = await axios.post('/user/signin', { email, password: pwd });
+      console.log(res);
+    } catch (err) {
+      console.log(err.response.data);
+      setErrMsg(err.response.data.msg);
+    }
   };
   return (
     <>
@@ -38,14 +45,13 @@ export const Login = () => {
           </p>
           <h1>Sign In</h1>
           <form onSubmit={handleSubmit}>
-            <label htmlFor='username'>Username:</label>
+            <label htmlFor='email'>Email:</label>
             <input
-              type='text'
-              id='username'
+              type='email'
+              id='email'
               ref={userRef}
-              autoComplete='off'
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
             />
             <label htmlFor='password'>Password:</label>
