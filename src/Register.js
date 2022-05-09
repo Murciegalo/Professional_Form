@@ -36,7 +36,6 @@ export const Register = () => {
 
   useEffect(() => {
     setValidName(USER_REGEX.test(user));
-    console.log(USER_REGEX.test(user));
   }, [user]);
 
   useEffect(() => {
@@ -45,6 +44,7 @@ export const Register = () => {
 
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(pwd));
+    console.log(PWD_REGEX.test(pwd));
     const match = pwd === matchPwd;
     setValidMatch(match);
   }, [pwd, matchPwd]);
@@ -163,7 +163,7 @@ export const Register = () => {
             />
             <p
               id='pwdnote'
-              className={pwdFocus && !validName ? 'instructions' : 'offscreen'}>
+              className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
               <FontAwesomeIcon icon={faInfoCircle} />
               8 to 24 characters.
               <br />
