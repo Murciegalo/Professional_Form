@@ -9,6 +9,7 @@ import { Lounge } from './Lounge';
 import { Register } from './Register';
 import { Unauthorized } from './Unauthorized';
 import { Missing } from './Missing';
+import RequireAuth from './authRoutes/ReguireAuth';
 
 function App() {
   return (
@@ -20,11 +21,12 @@ function App() {
         <Route path='linkpage' element={<LinkPg />} />
         <Route path='unauthorized' element={<Unauthorized />} />
 
-        {/* Private */}
-        <Route path='/' element={<Home />} />
-        <Route path='editor' element={<Editor />} />
-        <Route path='admin' element={<Admin />} />
-        <Route path='lounge' element={<Lounge />} />
+        <Route element={<RequireAuth />}>
+          <Route path='/' element={<Home />} />
+          <Route path='editor' element={<Editor />} />
+          <Route path='admin' element={<Admin />} />
+          <Route path='lounge' element={<Lounge />} />
+        </Route>
 
         <Route path='*' element={<Missing />} />
       </Route>
