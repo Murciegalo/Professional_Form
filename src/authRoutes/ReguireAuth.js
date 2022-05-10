@@ -5,7 +5,7 @@ const ReguireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
   console.log('PRIVATE', auth);
-  return auth?.user ? (
+  return auth?.email ? (
     <Outlet />
   ) : (
     <Navigate to='/login' state={{ from: location }} replace />
