@@ -4,7 +4,6 @@ import useAuth from '../hooks/useAuth';
 const ReguireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
-  console.log('PRIVATE', auth);
   return auth?.email ? (
     <Outlet />
   ) : (
