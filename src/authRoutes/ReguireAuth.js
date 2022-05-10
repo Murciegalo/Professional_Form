@@ -4,7 +4,8 @@ import useAuth from '../hooks/useAuth';
 const ReguireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
-  return auth ? (
+  console.log('PRIVATE', auth);
+  return auth?.user ? (
     <Outlet />
   ) : (
     <Navigate to='/login' state={{ from: location }} replace />
