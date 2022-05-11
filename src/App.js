@@ -21,13 +21,18 @@ function App() {
         <Route path='linkpage' element={<LinkPg />} />
         <Route path='unauthorized' element={<Unauthorized />} />
 
-        <Route element={<RequireAuth />}>
+        <Route element={<RequireAuth allowedRoles={['user']} />}>
           <Route path='/' element={<Home />} />
-          <Route path='editor' element={<Editor />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={['admin']} />}>
           <Route path='admin' element={<Admin />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={['editor']} />}>
+          <Route path='editor' element={<Editor />} />
+        </Route>
+        <Route element={<RequireAuth allowedRoles={['admin, editor']} />}>
           <Route path='lounge' element={<Lounge />} />
         </Route>
-
         <Route path='*' element={<Missing />} />
       </Route>
     </Routes>

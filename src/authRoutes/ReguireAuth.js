@@ -4,6 +4,10 @@ import useAuth from '../hooks/useAuth';
 const ReguireAuth = ({ allowedRoles }) => {
   const { auth } = useAuth();
   const location = useLocation();
+  console.log(
+    'TEST',
+    auth?.roles?.find((role) => allowedRoles.includes(role))
+  );
   return auth?.roles?.find((role) => allowedRoles.includes(role)) ? (
     <Outlet />
   ) : auth?.email ? (
