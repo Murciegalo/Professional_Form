@@ -32,8 +32,7 @@ export const Login = () => {
       const roles = res?.data?.user?.role;
       setEmail('');
       setPwd('');
-      setAuth({ accessToken, email, roles });
-      console.log('FROM', from);
+      setAuth({ accessToken, email, roles: [roles] });
       navigate(from, { replace: true });
     } catch (err) {
       setErrMsg(err?.response?.data?.msg || err);

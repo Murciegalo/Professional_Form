@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { EMAIL_REGEX, PWD_REGEX, USER_REGEX } from './utils/tools';
+import { Link } from 'react-router-dom';
 
 export const Register = () => {
   const userRef = useRef();
@@ -192,8 +193,8 @@ export const Register = () => {
               required
               aria-invalid={validMatch ? 'false' : 'true'}
               aria-describedby='confirmnote'
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
+              onFocus={() => setMatchFocus(true)}
+              onBlur={() => setMatchFocus(false)}
             />
             <p
               id='confirmnote'
@@ -213,7 +214,7 @@ export const Register = () => {
             <br />
             <span className='line'>
               {/* react-link here */}
-              <a href='#'>Sign In</a>
+              <Link to='/login'>Sign In</Link>
             </span>
           </p>
         </section>
